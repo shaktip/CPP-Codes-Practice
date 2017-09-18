@@ -1,0 +1,7 @@
+#include<iosteam>
+
+int main()
+{
+  cout<<(-1)%20;
+  return 0;
+}

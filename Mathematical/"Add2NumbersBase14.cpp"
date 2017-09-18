@@ -1,0 +1,52 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int getNumber(char x)
+{
+   if(x >= '0' && x <= '9')
+     return x - '0';
+   return x - 'A' + 10;
+}
+char getAlpha(int n)
+{
+    if(n >= 0 && n <= 9)
+       return n + '0';
+    return n - 10 + 'A';
+
+}
+string addBase14(string s1 , string s2)
+{
+   int len1 = s1.length();
+   int len2 = s2.length();
+   string result = "";
+   int carry = 0;
+   for(int i = len1-1 , j = len2-1; i >= 0 || j >= 0 ; i--,j--)
+   {
+     int a = 0 , b = 0;
+     if(i >= 0)
+       a = getNumber(s1[i]);
+     if(j >= 0)
+       b = getNumber(s2[j]);
+     int c = a+b+carry ;
+     if(c > 14)
+     {
+        c = c - 14;
+        carry = 1;
+     }
+     else
+        carry = 0;
+     result = getAplpha(c) + result;
+   }
+   if(carry)
+     result = '1' + result;
+   return result;
+}
+int main()
+{
+   string s1 = "123A45";
+   string s2 = "C3B";
+
+   cout<<"Add in base 14 : "<<addBase14(s1 , s2);
+   return 0;
+
+}
